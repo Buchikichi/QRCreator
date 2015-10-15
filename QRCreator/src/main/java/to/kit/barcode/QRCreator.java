@@ -29,6 +29,7 @@ public class QRCreator {
 		Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
 		QRCodeWriter writer = new QRCodeWriter();
 
+		hints.put(EncodeHintType.CHARACTER_SET, "Shift_JIS");
 		hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
 		BitMatrix bitMatrix = writer.encode(contents, format, width, height, hints);
 		BufferedImage image = MatrixToImageWriter.toBufferedImage(bitMatrix);
