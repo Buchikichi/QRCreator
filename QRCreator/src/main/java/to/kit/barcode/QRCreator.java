@@ -28,12 +28,13 @@ public class QRCreator {
 		BarcodeFormat format = BarcodeFormat.QR_CODE;
 		Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
 		QRCodeWriter writer = new QRCodeWriter();
+		String filename = contents.replaceAll("[/]", "_");
 
 		hints.put(EncodeHintType.CHARACTER_SET, "Shift_JIS");
 		hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
 		BitMatrix bitMatrix = writer.encode(contents, format, width, height, hints);
 		BufferedImage image = MatrixToImageWriter.toBufferedImage(bitMatrix);
-		ImageIO.write(image, "png", new File(contents + ".png"));
+		ImageIO.write(image, "png", new File(filename + ".png"));
 	}
 
 	public String inputContent() {
